@@ -1,5 +1,5 @@
 ##### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
-![bagan](/bagandjango.png)
+![bagan](https://github.com/kevin-alex-12/tugasdua-pbp/blob/main/katalog/bagandjango.png?raw=true)
 
 ##### Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 Jawab: Virtual environment digunakan untuk mengisolasi lingkungan virtual python agar tidak bisa diakses dari luar. Selain itu untuk menghindari adanya upgrade modul global yang menyebabkan aplikasi web yang dibuat bisa saja tidak bisa digunakan karena harus menggunakan versi modul tertentu. Kita bisa saja membuat aplikasi web tersebut tanpa menggunakan virtual environment, tetapi kita harus berhati-hati dalam menginstall/upgrade modul-modul yang digunakan.
