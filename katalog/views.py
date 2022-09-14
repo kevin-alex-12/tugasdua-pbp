@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from katalog.models import CatalogItem
 
-# TODO: Create your views here.
+# Create request parameter.
 def show_katalog(request):
     data_barang_katalog = CatalogItem.objects.all()
     context = {
