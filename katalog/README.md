@@ -1,11 +1,10 @@
-##### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
+#### Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
 ![bagan](https://github.com/kevin-alex-12/tugasdua-pbp/blob/main/katalog/bagandjango.png?raw=true)
 
-##### Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
+#### Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 Jawab: Virtual environment digunakan untuk mengisolasi lingkungan virtual python agar tidak bisa diakses dari luar. Selain itu untuk menghindari adanya upgrade modul global yang menyebabkan aplikasi web yang dibuat bisa saja tidak bisa digunakan karena harus menggunakan versi modul tertentu. Kita bisa saja membuat aplikasi web tersebut tanpa menggunakan virtual environment, tetapi kita harus berhati-hati dalam menginstall/upgrade modul-modul yang digunakan.
 
-##### Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas.
-Jawab:
+#### Jelaskan bagaimana cara kamu mengimplementasikan poin 1 sampai dengan 4 di atas.
 [Poin 1] Sesuai dengan lab 1, saya membuat fungsi yang menerima parameter request dan mengembalikan response sesuai dengan permintaan tugas 2
 
 views.py di folder katalog
@@ -73,7 +72,7 @@ def show_katalog(request):
     return render(request, "katalog.html", context)
 ```
 
----- berkas html
+berkas html
 ```html
 {% for barang in list_barang %}
     <tr>
