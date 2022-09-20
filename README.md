@@ -4,9 +4,10 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 
 *Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
 
-## Untuk Tugas
+## README.md Untuk Tugas
 
-README.md untuk Tugas 2 berada pada folder katalog.
+Masing-masing file README.md berada pada aplikasi Django terkait, dengan ketentuan: <br>
+README.md untuk Tugas 2 berada pada folder katalog. <br>
 README.md untuk Tugas 3 berada pada folder mywatchlist.
 
 ## Pendahuluan
