@@ -1,0 +1,112 @@
+[
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":1,
+        "fields":{
+            "watched":true,
+            "title":"Uncle from Another World",
+            "rating": 5,
+            "release_date": "2022-07-06",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":2,
+        "fields":{
+            "watched":true,
+            "title":"Overlord IV",
+            "rating": 4,
+            "release_date": "2022-07-05",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":3,
+        "fields":{
+            "watched":false,
+            "title":"The Devil is a Part-Timer! Season 2",
+            "rating": 3,
+            "release_date": "2022-07-14",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":4,
+        "fields":{
+            "watched":false,
+            "title":"If Her Flag Breaks",
+            "rating": 3,
+            "release_date": "2014-04-07",
+            "review": "Currently, no review available"
+        }   
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":5,
+        "fields":{
+            "watched":true,
+            "title":"Restaurant to Another World 2",
+            "rating": 3,
+            "release_date": "2021-10-02",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":6,
+        "fields":{
+            "watched":false,
+            "title":"Komi Can't Communicate",
+            "rating": 4,
+            "release_date": "2021-10-07",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":7,
+        "fields":{
+            "watched":true,
+            "title":"The Detective Is Already Dead",
+            "rating": 3,
+            "release_date": "2021-07-04",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":8,
+        "fields":{
+            "watched":false,
+            "title":"The World Ends with You The Animation",
+            "rating": 3,
+            "release_date": "2021-04-10",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":9,
+        "fields":{
+            "watched":true,
+            "title":"Log Horizon: Destruction of the Round Table",
+            "rating": 4,
+            "release_date": "2021-01-13",
+            "review": "Currently, no review available"
+        }
+},
+    {
+        "model":"mywatchlist.mywatchlist",
+        "pk":10,
+        "fields":{
+            "watched":true,
+            "title":"Grimgar: Ashes and Illusions",
+            "rating": 5,
+            "release_date": "2016-01-11",
+            "review": "Currently, no review available"
+        }
+}
+]

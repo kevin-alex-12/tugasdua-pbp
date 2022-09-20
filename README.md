@@ -7,6 +7,7 @@ Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu 
 ## Untuk Tugas
 
 README.md untuk Tugas 2 berada pada folder katalog.
+README.md untuk Tugas 3 berada pada folder mywatchlist.
 
 ## Pendahuluan
 

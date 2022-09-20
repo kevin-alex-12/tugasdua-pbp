@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>Lab 1 Assignment PBP/PBD Index</h1>
+
+  <h5>Name: </h5>
+  <p>{{nama}}</p>
+
+  <h5>Student ID: </h5>
+  <p>{{studentid}}</p>
+
+  <h5>Welcome to MyWatchList Index</h5>
+  <p>Please click the data types that you want to see.</p>
+  <a href="/mywatchlist/xml">[XML]</a>
+  <a href="/mywatchlist/html">[HTML]</a>
+  <a href="/mywatchlist/json">[JSON]</a>
+
+ {% endblock content %}
