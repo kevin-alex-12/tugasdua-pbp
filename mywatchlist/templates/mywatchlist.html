@@ -22,7 +22,7 @@
     {% for data in watch_list %}
     <tr>
         <th>{{data.title}}</th>
-        <th>{{ data.watched|yesno:"Watched, Not Watched" }}</th>
+        <th>{{ data.watched|yesno:"Yes, No" }}</th>
         <th>{{data.rating}}</th>
         <th>{{data.release_date}}</th>
         <th>{{data.review}}</th>
