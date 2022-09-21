@@ -13,7 +13,7 @@ https://tugas-pbp22.herokuapp.com/mywatchlist/xml/
 | Penyimpanan data sulit untuk dilihat | Penyimpanan data lebih terstruktur dan mudah dibaca | Penyimpanan data memiliki bagian masing-masing |
 | Berfokus untuk transfer data | Berfokus untuk transfer data | Berfokus untuk penyajian data |
 | Data lebih efisien | Data kurang efisien | Data kurang efisien |
-| Tidak perlu tag | Perl tag | Perlu tag |
+| Tidak perlu tag | Perlu tag | Perlu tag |
 | Pembacaan lebih cepat | Pembacaan lambat | Pembacaan lambat |
 | Dalam format JavaScript | Tidak ada format | Tidak ada format |
 
