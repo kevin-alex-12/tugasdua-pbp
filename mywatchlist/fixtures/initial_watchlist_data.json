@@ -3,7 +3,7 @@
         "model":"mywatchlist.mywatchlist",
         "pk":1,
         "fields":{
-            "watched":true,
+            "watched":false,
             "title":"Uncle from Another World",
             "rating": 5,
             "release_date": "2022-07-06",
@@ -14,7 +14,7 @@
         "model":"mywatchlist.mywatchlist",
         "pk":2,
         "fields":{
-            "watched":true,
+            "watched":false,
             "title":"Overlord IV",
             "rating": 4,
             "release_date": "2022-07-05",

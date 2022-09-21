@@ -30,4 +30,10 @@
     {% endfor %}
   </table>
 
+    {% if tonton|length >= tidak_tonton|length %}
+      <p>Selamat, kamu sudah banyak menonton!</p>
+    {% else %}
+      <p>Wah, kamu masih sedikit menonton!</p>
+    {% endif %}
+
  {% endblock content %}

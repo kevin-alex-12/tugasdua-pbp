@@ -21,8 +21,12 @@ def show_json(request):
 
 def show_html(request):
     data_watchlist = MyWatchList.objects.all()
+    dataTonton = data_watchlist.filter(watched=True)
+    dataTidak = data_watchlist.filter(watched=False)
     context = {
         'watch_list': data_watchlist,
+        'tonton': dataTonton,
+        'tidak_tonton': dataTidak,
         'nama': 'Kevin Alexander',
         'studentid': '2106705026',
     }
