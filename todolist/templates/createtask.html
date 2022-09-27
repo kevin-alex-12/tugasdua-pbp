@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Create Task</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "create-task">
+
+    <h1>Create Task</h1>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+            <p>Title:</p>
+            <input type="text" name="title" placeholder="Title" class="form-control"><br/>
+                    
+            <p>Description:</p>
+            <textarea cols="35" rows="8" name="description" placeholder="Description"></textarea><br/>
+            
+            <input type="submit" name="submit" value="Add">
+    </form>
+</div>
+
+{% endblock content %}

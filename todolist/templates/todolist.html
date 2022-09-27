@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>Welcome to To Do List Apps</h1>
+  <p>Username: </p>
+  <p>{{ user.username }}</p>
+
+  <p>My To Do</p>
+
+  {% if task|length != 0 %}
+    <table>
+        <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Finished</th>
+        <th>Update</th>
+        <th>Delete</th>
+        </tr>
+        {% for data in task %}
+        <tr>
+        <th>{{data.date}}</th>
+        <th>{{data.title}}</th>
+        <th>{{data.description}}</th>
+        <th>{{data.is_finished}}</th>
+        <th>
+          {% if data.is_finished == True %}
+            <button><a href="update/{{ data.id }}">Belum Selesai</a></button>
+          {% else %}
+            <button><a href="update/{{ data.id }}">Selesai</a></button>
+          {% endif %}
+        </th>
+        <th>
+          <button><a href="delete/{{ data.id }}">Hapus</a></button>
+        </th>
+        </tr>
+        {% endfor %}
+    </table>
+  {% else %}
+    <p>Belum ada tugas</p>
+  {% endif %}
+
+  <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
+  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+  
+
+ {% endblock content %}
