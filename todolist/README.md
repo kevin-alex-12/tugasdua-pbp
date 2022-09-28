@@ -2,6 +2,18 @@
 
 https://tugas-pbp22.herokuapp.com/todolist/ <br>
 
+## Akun pengguna dan dummy data
+
+```
+Username: pengguna1
+Password: dummyuser1
+```
+
+```
+Username: pengguna2
+Password: dummyuser2
+```
+
 ## Apa kegunaan {% csrf_token %} pada elemen \<form>? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen \<form>?
 
 Pada django, csrf_token berguna untuk menghidari serangan CSRF pada web. Django akan membuat suatu token pengenal saat <i>render</i> halaman web dan akan dicek apakah <i>request</i> dari <i>user</i> memiliki token yang sama. Jika sama, proses akan dilanjutkan dan jika tidak sama, tidak akan dilanjutkan.<br>
