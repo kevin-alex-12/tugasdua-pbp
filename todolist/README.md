@@ -307,11 +307,11 @@ Sumber: <br>
 | Selector Class | Selector yang akan digunakan jika menggunakan class tersebut (dengan awalan .) |
 | Selector ID | Selector yang hanya dapat digunakan oleh satu elemen saja karena bersifat unik (dengan awalan #) |
 
-## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+## Jelaskan bagaimana cara kamu mengimplementasikan <i>checklist</i> di atas.
 
-Pertama, pilih dahulu ingin menggunakan framework yang mana (Saya memilih Bootstrap).<br>
+Pertama, pilih dahulu ingin menggunakan framework yang mana (Saya memilih Bootstrap). Untuk membuat halaman menjadi <i>responsive</i>, menurut saya tidak wajib menggunakan "Media Query" karena halaman aplikasi tersebut masih sederhana, sehingga saya hanya tinggal mengubah batasan-batasan, seperti <i>width</i>, <i>margin</i>, dan lainnya agar menjadi <i>responsive</i> mengikuti ukuran layar yang digunakan.<br>
 
-Lalu tambahkan kode berikut pada berkas base.html sehingga menjadi:
+Selanjutnya, tambahkan kode berikut pada berkas base.html sehingga menjadi:
 ```
 ...
 <head>
