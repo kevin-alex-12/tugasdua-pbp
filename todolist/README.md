@@ -303,9 +303,9 @@ Sumber: <br>
 
 | Jenis Selector | Penjelasan |
 | --------- | ---------- |
-| Selector Tag | Selector yang mewakili penggunaan tag pada HTML |
-| Selector Class | Selector yang akan digunakan jika menggunakan class tersebut |
-| Selector ID | Selector yang hanya dapat digunakan oleh satu elemen saja karena bersifat unik |
+| Selector Tag (Element) | Selector yang mewakili penggunaan tag pada HTML (tanpa awalan # atau .) |
+| Selector Class | Selector yang akan digunakan jika menggunakan class tersebut (dengan awalan .) |
+| Selector ID | Selector yang hanya dapat digunakan oleh satu elemen saja karena bersifat unik (dengan awalan #) |
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
 
