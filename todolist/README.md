@@ -249,7 +249,6 @@ python manage.py createsuperuser
 | Tidak memerlukan file .css | Tidak memerlukan file .css | Memerlukan file .css |
 | Ditulis langsung pada atribut elemen HTML | Ditulis pada tag \<style> pada bagian header HTML | Ditulis pada file terpisah dari HTML |
 | Ruang linkupnya hanya dalam satu elemen | Ruang lingkupnya hanya dalam satu HTML | Ruang lingkupnya bisa lebih dari satu HTML asalkan HTML tersebut menambahkan file .css |
-| ss | s s | ss |
 
 ### Kelebihan
 
