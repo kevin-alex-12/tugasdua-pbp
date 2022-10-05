@@ -6,9 +6,9 @@
 
 {% block content %}
 
-<div class = "login">
+<div class = "login position-absolute top-50 start-50 translate-middle">
 
-    <h1>Login</h1>
+    <h1 style="text-align: center; margin-bottom: 20px;">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
@@ -22,12 +22,10 @@
                 <td>Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
         </table>
+
+        <input class="btn btn-primary d-flex flex-row-reverse" style="margin: 20px auto;" type="submit" value="Login">
+        
     </form>
 
     {% if messages %}
@@ -38,7 +36,7 @@
         </ul>
     {% endif %}     
         
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+    <p style="text-align: center;">Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a></p>
 
 </div>
 

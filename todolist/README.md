@@ -14,6 +14,8 @@ Username: pengguna2
 Password: dummyuser2
 ```
 
+# TUGAS 4
+
 ## Apa kegunaan {% csrf_token %} pada elemen \<form>? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen \<form>?
 
 Pada django, csrf_token berguna untuk menghidari serangan CSRF pada web. Django akan membuat suatu token pengenal saat <i>render</i> halaman web dan akan dicek apakah <i>request</i> dari <i>user</i> memiliki token yang sama. Jika sama, proses akan dilanjutkan dan jika tidak sama, tidak akan dilanjutkan.<br>
@@ -234,4 +236,185 @@ Terakhir lakukan <i>deployment</i> ke Heroku, baru setelah itu kita membuat <i>d
 
 ```
 python manage.py createsuperuser
+```
+
+# TUGAS 5
+
+## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+
+### Perbedaan
+
+| Inline CSS     | Internal CSS   | External CSS   |
+| -------------- | -------------- | -------------- |
+| Tidak memerlukan file .css | Tidak memerlukan file .css | Memerlukan file .css |
+| Ditulis langsung pada atribut elemen HTML | Ditulis pada tag \<style> pada bagian header HTML | Ditulis pada file terpisah dari HTML |
+| Ruang linkupnya hanya dalam satu elemen | Ruang lingkupnya hanya dalam satu HTML | Ruang lingkupnya bisa lebih dari satu HTML asalkan HTML tersebut menambahkan file .css |
+| ss | s s | ss |
+
+### Kelebihan
+
+<b>Inline CSS</b>
+* Permintaan HTTP lebih kecil sehingga proses loading lebih cepat
+* Cukup berguna jika hanya ingin terdapat perubahan di satu elemen
+
+<b>Internal CSS</b>
+* Hanya berlaku pada satu HTML saja sehingga perubahan style tidak mempengaruhi HTML lain
+* Tidak perlu mengunggah banyak file karena kode CSS sudah di dalam HTML
+
+<b>External CSS</b>
+* Ukuran HTML menjadi lebih kecil
+* Memisahkan antara pengaturan HTML dengan style CSS
+* Dapat menerapkan style pada beberapa HTML
+
+### Kekurangan
+
+<b>Inline CSS</b>
+* Tidak efisien jika ingin menerapkan style yang sama pada banyak elemen
+
+<b>Internal CSS</b>
+* Tidak bisa digunakan untuk beberapa HTML
+* Memperberat proses loading web jika menggunakan HTML yang berbeda
+* Ukuran HTML menjadi lebih besar
+
+<b>External CSS</b>
+* Bisa terjadi kegagalan pengambilan file CSS sehingga membuat HTML terlihat berantakan
+
+Sumber: <br>
+[Perbedaan Inline CSS, External CSS dan Internal CSS](https://www.hostinger.co.id/tutorial/perbedaan-inline-css-external-css-dan-internal-css)
+
+## Jelaskan tag HTML5 yang kamu ketahui.
+
+Asumsikan bahwa yang dijelaskan hanya tag yang baru dirilis saat HTML5.
+
+| Jenis Tag | Penjelasan |
+| --------- | ---------- |
+| \<mark> | Untuk menyorot teks (<i>highlight</i>) |
+| \<nav> | Untuk membuat navigasi pada halaman web |
+| \<header> | Untuk menandai bagian header pada HTML |
+| \<footer> | Untuk menandai bagian footer pada HTML |
+| \<section> | Untuk membagi suatu halaman menjadi beberapa bagian |
+| \<article> | Untuk menandai suatu konten utama |
+| \<aside> | Untuk menambahkan konten sampingan |
+
+Sumber: <br>
+[Tag-tag Pada HTML beserta Fungsinya](https://gilacoding.com/read/tag-tag-pada-html-beserta-fungsinya)<br>
+[HTML Element Reference](https://www.w3schools.com/tags/default.asp)
+
+## Jelaskan tipe-tipe CSS selector yang kamu ketahui.
+
+| Jenis Selector | Penjelasan |
+| --------- | ---------- |
+| Selector Tag | Selector yang mewakili penggunaan tag pada HTML |
+| Selector Class | Selector yang akan digunakan jika menggunakan class tersebut |
+| Selector ID | Selector yang hanya dapat digunakan oleh satu elemen saja karena bersifat unik |
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+
+Pertama, pilih dahulu ingin menggunakan framework yang mana (Saya memilih Bootstrap).<br>
+
+Lalu tambahkan kode berikut pada berkas base.html sehingga menjadi:
+```
+...
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% block meta %}
+  {% endblock meta %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+  {% block content %}
+  {% endblock content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+...
+```
+
+Kemudian ganti berkas .html pada folder templates di aplikasi todolist sesuai dengan keinginan, contohnya di sini akan memakai berkas .html berikut:<br>
+
+login.html, hanya menambahkan posisi agar berada di tengah halaman web.
+```
+...
+<div class = "login position-absolute top-50 start-50 translate-middle">
+...
+<h1 style="text-align: center; margin-bottom: 20px;">Login</h1>
+...
+<input class="btn btn-primary d-flex flex-row-reverse" style="margin: 20px auto;" type="submit" value="Login">
+...
+```
+
+todolist.html, menambahkan navbar.
+```
+...
+<nav class="navbar navbar-expand-lg bg-primary" style="margin-bottom: 20px;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-bg-primary" href="#">To Do List</a>
+    <div class="navbar-nav float-end">
+        <p style="margin: auto 20px; color: white;">Selamat datang, {{ user.username }}!</p>
+        <button class="btn btn-danger"><a class = "link-light text-decoration-none" href="{% url 'todolist:logout' %}">Logout</a></button>
+    </div>
+    </div>
+</nav>
+...
+```
+
+todolist.html, mengubah penggunaan tabel menjadi card sesuai dengan ketentuan tugas 5.
+```
+...
+  <div class="row" style="margin-left:10px; margin-right:10px">
+
+    {% for data in task %}
+      <div class="col-sm-6">
+        {% if data.is_finished == True %}
+          <div class="card text-bg-secondary mb-3">
+            <div class="card-header">Added: {{data.date}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{data.title}}</h5>
+              <p class="card-text">{{data.description}}</p>
+              <a href="delete/{{ data.id }}" class="btn btn-danger">Remove</a>
+              <button class="btn btn-success"><a class = "link-light text-decoration-none" href="update/{{ data.id }}">Unfinisihed</a></button>
+            </div>
+          </div>
+        {% else %}
+          <div class="card text-bg-success mb-3">
+            <div class="card-header">Added: {{data.date}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{data.title}}</h5>
+              <p class="card-text">{{data.description}}</p>
+              <a href="delete/{{ data.id }}" class="btn btn-danger">Remove</a>
+              <button class="btn btn-primary"><a class = "link-light text-decoration-none" href="update/{{ data.id }}">Finished</a></button>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+...
+```
+
+createtask.html, sama seperti todolist.html, menambahkan navbar dan menengahkan elemen form.
+```
+...
+<nav class="navbar navbar-expand-lg bg-primary" style="margin-bottom: 20px;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-bg-primary" href="#">To Do List</a>
+        <div class="navbar-nav float-end">
+            <p style="margin: auto 20px; color: white;">Selamat datang, {{ user.username }}!</p>
+            <button class="btn btn-danger"><a class = "link-light text-decoration-none" href="{% url 'todolist:logout' %}">Logout</a></button>
+        </div>
+    </div>
+ </nav>
+...
+<div class = "create-task" style="margin: 10px auto; max-width: 500px;">
+...
+```
+
+register.html, menengahkan elemen dan mengubah style table.
+```
+...
+<div class = "login position-absolute top-50 start-50 translate-middle">
+...
+<table class="table table-striped">
 ```

@@ -5,20 +5,34 @@
 {% endblock meta %}
 
 {% block content %}
+<nav class="navbar navbar-expand-lg bg-primary" style="margin-bottom: 20px;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-bg-primary" href="#">To Do List</a>
+        <div class="navbar-nav float-end">
+            <p style="margin: auto 20px; color: white;">Selamat datang, {{ user.username }}!</p>
+            <button class="btn btn-danger"><a class = "link-light text-decoration-none" href="{% url 'todolist:logout' %}">Logout</a></button>
+        </div>
+    </div>
+ </nav>
 
-<div class = "create-task">
+<div class = "create-task" style="margin: 10px auto; max-width: 500px;">
 
-    <h1>Create Task</h1>
+    <h1 style="text-align: center;">Create Task</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="" style="margin-left: 10px; margin-right:10px;">
         {% csrf_token %}
+
             <p>Title:</p>
             <input type="text" name="title" placeholder="Title" class="form-control"><br/>
                     
             <p>Description:</p>
-            <textarea cols="35" rows="8" name="description" placeholder="Description"></textarea><br/>
+            <textarea cols="100" rows="10" name="description" placeholder="Description" style="max-width: 100%;"></textarea><br/>
             
-            <input type="submit" name="submit" value="Add">
+        <div style="margin: 10px auto;">
+            <button class="btn btn-danger" style="margin-left: 10px;"><a class = "link-light text-decoration-none" href="{% url 'todolist:show_todolist' %}">Back</a></button>
+            <input class="btn btn-primary" type="submit" name="submit" value="Add">
+        </div>
+            
     </form>
 </div>
 
