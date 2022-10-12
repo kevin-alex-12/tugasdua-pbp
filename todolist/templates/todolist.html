@@ -16,133 +16,162 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
+
+  // Bonus AJAX DELETE
+  function deleteTask(pk) {
+    $.ajax({
+      url: `delete/${pk}`,
+      success: function() {
+        $("#data").empty();
+        $.get( "{% url 'todolist:show_json' %}", function(data) {
+          taskData(data);
+        });
+      }    
+    });
+  }
+
+  // Function untuk menampilkan data task
+  function taskData(data) {
+    if (data.length == 0) {
+      // If task is empty
+      var pesan = document.createElement('p');
+      pesan.innerHTML = 'Belum ada tugas';
+      pesan.style.margin = "0px 10px";
+
+      $(document.body).append(pesan);
+
+    }  else {
+      // If task is not empty
+      $.each( data, function(key, val) {
+
+        // For finished task
+        if (val.fields.is_finished) {
+          var outerDiv = document.createElement('div');
+          outerDiv.classList.add('col-sm-6');
+
+          var card_outer = document.createElement('div');
+          card_outer.classList.add('card', 'text-bg-success', 'mb-3');
+
+          var card_body = document.createElement('div');
+          card_body.classList.add('card-body');
+
+          card_outer.appendChild(card_body);
+
+          var title = document.createElement('h3');
+          var subtitle = document.createElement('h6');
+          var text = document.createElement('p');
+
+          title.classList.add('card-title');
+          subtitle.classList.add('card-subtitle');
+          text.classList.add('card-text');
+
+          title.innerHTML = val.fields.title;
+          subtitle.innerHTML = "Added: " + val.fields.date;
+          text.innerHTML = val.fields.description
+
+          card_body.appendChild(title);
+          card_body.appendChild(subtitle);
+          card_body.appendChild(text);
+
+          var buttonRemove = document.createElement('button');
+          buttonRemove.classList.add('btn', 'btn-danger');
+          buttonRemove.style.marginRight = "10px";
+          buttonRemove.setAttribute('onclick', `deleteTask(${val.pk})`);
+
+          var link = document.createElement('a');
+          var linkText = document.createTextNode("Remove");
+          link.appendChild(linkText);
+          link.classList.add('link-light', 'text-decoration-none');
+          // link.href = "delete/" + val.pk;
+
+          buttonRemove.appendChild(link);
+          card_body.appendChild(buttonRemove);
+
+          var buttonOuter = document.createElement('button');
+          buttonOuter.classList.add('btn', 'btn-primary');
+
+          var button = document.createElement('a');
+          var buttonText = document.createTextNode("Unfinisihed");
+          button.appendChild(buttonText);
+          button.classList.add('link-light', 'text-decoration-none');
+          button.href = "update/" + val.pk;
+
+          
+          buttonOuter.appendChild(button);
+          card_body.appendChild(buttonOuter);
+
+          outerDiv.appendChild(card_outer);
+
+          $("#data").append(outerDiv);
+
+        // For unfinished task
+        } else {
+          var outerDiv = document.createElement('div');
+          outerDiv.classList.add('col-sm-6');
+          var card_outer = document.createElement('div');
+          card_outer.classList.add('card', 'text-bg-info', 'mb-3');
+
+          var card_body = document.createElement('div');
+          card_body.classList.add('card-body');
+
+          card_outer.appendChild(card_body);
+
+          var title = document.createElement('h3');
+          var subtitle = document.createElement('h6');
+          var text = document.createElement('p');
+
+          title.classList.add('card-title');
+          subtitle.classList.add('card-subtitle');
+          text.classList.add('card-text');
+
+          title.innerHTML = val.fields.title;
+          subtitle.innerHTML = "Added: " + val.fields.date;
+          text.innerHTML = val.fields.description
+
+          card_body.appendChild(title);
+          card_body.appendChild(subtitle);
+          card_body.appendChild(text);
+
+          var buttonRemove = document.createElement('button');
+          buttonRemove.classList.add('btn', 'btn-danger');
+          buttonRemove.style.marginRight = "10px";
+          buttonRemove.setAttribute('onclick', `deleteTask(${val.pk})`);
+
+          var link = document.createElement('a');
+          var linkText = document.createTextNode("Remove");
+          link.appendChild(linkText);
+          link.classList.add('link-light', 'text-decoration-none');
+          // link.href = "delete/" + val.pk;
+
+          buttonRemove.appendChild(link);
+          card_body.appendChild(buttonRemove);
+
+          var buttonOuter = document.createElement('button');
+          buttonOuter.classList.add('btn', 'btn-success');
+
+          var button = document.createElement('a');
+          var buttonText = document.createTextNode("Finished");
+          button.appendChild(buttonText);
+          button.classList.add('link-light', 'text-decoration-none');
+          button.href = "update/" + val.pk;
+
+          
+          buttonOuter.appendChild(button);
+          card_body.appendChild(buttonOuter);
+          outerDiv.appendChild(card_outer);
+
+          $("#data").append(outerDiv);
+        }
+
+      });
+    }
+  }
+
   $(document).ready(function(){
 
-    // For getting task data
+    // For displaying task data
     $.get( "{% url 'todolist:show_json' %}", function(data) {
-
-      if (data.length == 0) {
-        // If task is empty
-        var pesan = document.createElement('p');
-        pesan.innerHTML = 'Belum ada tugas';
-        pesan.style.margin = "0px 10px";
-
-        $(document.body).append(pesan);
-        
-      } else {
-        // If task is not empty
-        $.each( data, function(key, val) {
-
-          // For finished task
-          if (val.fields.is_finished) {
-            var outerDiv = document.createElement('div');
-            outerDiv.classList.add('col-sm-6');
-
-            var card_outer = document.createElement('div');
-            card_outer.classList.add('card', 'text-bg-success', 'mb-3');
-
-            var card_body = document.createElement('div');
-            card_body.classList.add('card-body');
-
-            card_outer.appendChild(card_body);
-
-            var title = document.createElement('h3');
-            var subtitle = document.createElement('h6');
-            var text = document.createElement('p');
-
-            title.classList.add('card-title');
-            subtitle.classList.add('card-subtitle');
-            text.classList.add('card-text');
-
-            title.innerHTML = val.fields.title;
-            subtitle.innerHTML = "Added: " + val.fields.date;
-            text.innerHTML = val.fields.description
-
-            card_body.appendChild(title);
-            card_body.appendChild(subtitle);
-            card_body.appendChild(text);
-
-            var link = document.createElement('a');
-            var linkText = document.createTextNode("Remove");
-            link.appendChild(linkText);
-            link.classList.add('btn', 'btn-danger');
-            link.href = "delete/" + val.pk;
-            link.style.marginRight = "10px";
-            card_body.appendChild(link);
-
-            var buttonOuter = document.createElement('button');
-            buttonOuter.classList.add('btn', 'btn-primary');
-
-            var button = document.createElement('a');
-            var buttonText = document.createTextNode("Unfinisihed");
-            button.appendChild(buttonText);
-            button.classList.add('link-light', 'text-decoration-none');
-            button.href = "update/" + val.pk;
-
-            
-            buttonOuter.appendChild(button);
-            card_body.appendChild(buttonOuter);
-
-            outerDiv.appendChild(card_outer);
-
-            $("#data").append(outerDiv);
-
-
-          // For unfinished task
-          } else {
-            var outerDiv = document.createElement('div');
-            outerDiv.classList.add('col-sm-6');
-            var card_outer = document.createElement('div');
-            card_outer.classList.add('card', 'text-bg-info', 'mb-3');
-
-            var card_body = document.createElement('div');
-            card_body.classList.add('card-body');
-
-            card_outer.appendChild(card_body);
-
-            var title = document.createElement('h3');
-            var subtitle = document.createElement('h6');
-            var text = document.createElement('p');
-
-            title.classList.add('card-title');
-            subtitle.classList.add('card-subtitle');
-            text.classList.add('card-text');
-
-            title.innerHTML = val.fields.title;
-            subtitle.innerHTML = "Added: " + val.fields.date;
-            text.innerHTML = val.fields.description
-
-            card_body.appendChild(title);
-            card_body.appendChild(subtitle);
-            card_body.appendChild(text);
-
-            var link = document.createElement('a');
-            var linkText = document.createTextNode("Remove");
-            link.appendChild(linkText);
-            link.classList.add('btn', 'btn-danger');
-            link.href = "delete/" + val.pk;
-            link.style.marginRight = "10px";
-            card_body.appendChild(link);
-
-            var buttonOuter = document.createElement('button');
-            buttonOuter.classList.add('btn', 'btn-success');
-
-            var button = document.createElement('a');
-            var buttonText = document.createTextNode("Finished");
-            button.appendChild(buttonText);
-            button.classList.add('link-light', 'text-decoration-none');
-            button.href = "update/" + val.pk;
-
-            
-            buttonOuter.appendChild(button);
-            card_body.appendChild(buttonOuter);
-            outerDiv.appendChild(card_outer);
-
-            $("#data").append(outerDiv);
-          }
-
-        });
-      }
+      taskData(data);      
     });
 
     // For adding new Task, referensi dari
@@ -160,9 +189,17 @@
               $('#addTask').each(function () {
                   this.reset();
               });
+
+              // Empty div class and make new
+              $("#data").empty();
+              $.get( "{% url 'todolist:show_json' %}", function(data) {
+                taskData(data);
+              });
           }
-      });
+      });    
     });
+
+    $()
   });
   </script>
   {% endblock meta %}
