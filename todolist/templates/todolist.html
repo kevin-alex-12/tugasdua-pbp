@@ -11,7 +11,159 @@
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
     }
-    </style>
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+  $(document).ready(function(){
+
+    // For getting task data
+    $.get( "{% url 'todolist:show_json' %}", function(data) {
+
+      if (data.length == 0) {
+        // If task is empty
+        var pesan = document.createElement('p');
+        pesan.innerHTML = 'Belum ada tugas';
+        pesan.style.margin = "0px 10px";
+
+        $(document.body).append(pesan);
+        
+      } else {
+        // If task is not empty
+        $.each( data, function(key, val) {
+
+          // For finished task
+          if (val.fields.is_finished) {
+            var outerDiv = document.createElement('div');
+            outerDiv.classList.add('col-sm-6');
+
+            var card_outer = document.createElement('div');
+            card_outer.classList.add('card', 'text-bg-success', 'mb-3');
+
+            var card_body = document.createElement('div');
+            card_body.classList.add('card-body');
+
+            card_outer.appendChild(card_body);
+
+            var title = document.createElement('h3');
+            var subtitle = document.createElement('h6');
+            var text = document.createElement('p');
+
+            title.classList.add('card-title');
+            subtitle.classList.add('card-subtitle');
+            text.classList.add('card-text');
+
+            title.innerHTML = val.fields.title;
+            subtitle.innerHTML = "Added: " + val.fields.date;
+            text.innerHTML = val.fields.description
+
+            card_body.appendChild(title);
+            card_body.appendChild(subtitle);
+            card_body.appendChild(text);
+
+            var link = document.createElement('a');
+            var linkText = document.createTextNode("Remove");
+            link.appendChild(linkText);
+            link.classList.add('btn', 'btn-danger');
+            link.href = "delete/" + val.pk;
+            link.style.marginRight = "10px";
+            card_body.appendChild(link);
+
+            var buttonOuter = document.createElement('button');
+            buttonOuter.classList.add('btn', 'btn-primary');
+
+            var button = document.createElement('a');
+            var buttonText = document.createTextNode("Unfinisihed");
+            button.appendChild(buttonText);
+            button.classList.add('link-light', 'text-decoration-none');
+            button.href = "update/" + val.pk;
+
+            
+            buttonOuter.appendChild(button);
+            card_body.appendChild(buttonOuter);
+
+            outerDiv.appendChild(card_outer);
+
+            $("#data").append(outerDiv);
+
+
+          // For unfinished task
+          } else {
+            var outerDiv = document.createElement('div');
+            outerDiv.classList.add('col-sm-6');
+            var card_outer = document.createElement('div');
+            card_outer.classList.add('card', 'text-bg-info', 'mb-3');
+
+            var card_body = document.createElement('div');
+            card_body.classList.add('card-body');
+
+            card_outer.appendChild(card_body);
+
+            var title = document.createElement('h3');
+            var subtitle = document.createElement('h6');
+            var text = document.createElement('p');
+
+            title.classList.add('card-title');
+            subtitle.classList.add('card-subtitle');
+            text.classList.add('card-text');
+
+            title.innerHTML = val.fields.title;
+            subtitle.innerHTML = "Added: " + val.fields.date;
+            text.innerHTML = val.fields.description
+
+            card_body.appendChild(title);
+            card_body.appendChild(subtitle);
+            card_body.appendChild(text);
+
+            var link = document.createElement('a');
+            var linkText = document.createTextNode("Remove");
+            link.appendChild(linkText);
+            link.classList.add('btn', 'btn-danger');
+            link.href = "delete/" + val.pk;
+            link.style.marginRight = "10px";
+            card_body.appendChild(link);
+
+            var buttonOuter = document.createElement('button');
+            buttonOuter.classList.add('btn', 'btn-success');
+
+            var button = document.createElement('a');
+            var buttonText = document.createTextNode("Finished");
+            button.appendChild(buttonText);
+            button.classList.add('link-light', 'text-decoration-none');
+            button.href = "update/" + val.pk;
+
+            
+            buttonOuter.appendChild(button);
+            card_body.appendChild(buttonOuter);
+            outerDiv.appendChild(card_outer);
+
+            $("#data").append(outerDiv);
+          }
+
+        });
+      }
+    });
+
+    // For adding new Task
+    $("#addTask").submit(function (e) {
+      e.preventDefault();
+      var serializedData = $(this).serialize();
+      $.ajax({
+          url: "{% url 'todolist:add_task' %}",
+          type: "POST",
+          data: serializedData,
+          dataType: 'text',
+          success: function (data) {
+              $("#exampleModal").modal('hide');
+              $('#addTask').each(function () {
+                  this.reset();
+              });
+          }
+      });
+    });
+  });
+  </script>
   {% endblock meta %}
 
  {% block content %}
@@ -26,42 +178,42 @@
   </div>
 </nav>
 
-  <div class="container" style="margin: 10px 10px;">
-    <button class="btn btn-info btn-lg"><a class = "link-light text-decoration-none" href="{% url 'todolist:create_task' %}">New Task</a></button>
-  </div>
+<div class="container" style="margin: 10px 10px;">
+  <button class="btn btn-info btn-lg"><a class = "link-light text-decoration-none" href="{% url 'todolist:create_task' %}">New Task (Tugas 5)</a></button>
+  <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Add Task (Tugas 6)
+  </button>
+</div>
 
-  {% if task|length != 0 %}
-  <div class="row" style="margin-left:10px; margin-right:10px">
-
-    {% for data in task %}
-      <div class="col-sm-6">
-        {% if data.is_finished == True %}
-          <div class="card text-bg-success mb-3">
-            <div class="card-body">
-              <h3 class="card-title">{{data.title}}</h3>
-              <h6 class="card-subtitle">Added: {{data.date}}</h6>
-              <p class="card-text">{{data.description}}</p>
-              <a href="delete/{{ data.id }}" class="btn btn-danger">Remove</a>
-              <button class="btn btn-primary"><a class = "link-light text-decoration-none" href="update/{{ data.id }}">Unfinisihed</a></button>
-            </div>
-          </div>
-        {% else %}
-          <div class="card text-bg-info mb-3">
-            <div class="card-body">
-              <h4 class="card-title">{{data.title}}</h4>
-              <h6 class="card-subtitle">Added: {{data.date}}</h6>
-              <p class="card-text">{{data.description}}</p>
-              <a href="delete/{{ data.id }}" class="btn btn-danger">Remove</a>
-              <button class="btn btn-success"><a class = "link-light text-decoration-none" href="update/{{ data.id }}">Finished</a></button>
-            </div>
-          </div>
-        {% endif %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Task with AJAX</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    {% endfor %}
-  </div>
+      <div class="modal-body">
+        <form id="addTask">
+          {% csrf_token %}
+  
+              <p>Title:</p>
+              <input type="text" name="title" placeholder="Title" class="form-control"><br/>
+                      
+              <p>Description:</p>
+              <textarea cols="100" rows="10" name="description" placeholder="Description" style="max-width: 100%;"></textarea><br/>
+              
+          <div style="margin: 10px auto;">
+              <input class="btn btn-primary" type="submit" name="submit" value="Add">
+          </div>
 
-  {% else %}
-    <p>Belum ada tugas</p>
-  {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-left:10px; margin-right:10px" id="data">
+</div>
 
  {% endblock content %}

@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.core import serializers
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -17,6 +19,12 @@ def show_todolist(request):
         'task': dataTask,
     }
     return render(request, "todolist.html", context)
+
+@login_required(login_url='/todolist/login/')
+def show_json(request):
+    cuuser = request.user
+    dataTask = Task.objects.all().filter(user = cuuser)
+    return HttpResponse(serializers.serialize("json", dataTask), content_type="application/json")
 
 # Halaman register akun
 def register(request):
@@ -52,6 +60,7 @@ def logout_user(request):
     return redirect('todolist:login')
 
 # Mmebuat task baru
+@login_required(login_url='/todolist/login/')
 def create_task(request):
     if request.method == 'POST':
         task = Task()
@@ -62,6 +71,16 @@ def create_task(request):
         return redirect('todolist:show_todolist')
 
     return render(request, 'createtask.html')
+
+@login_required(login_url='/todolist/login/')
+def add_task(request):
+    if request.method == 'POST':
+        task = Task()
+        task.user = request.user
+        task.title = request.POST.get('title')
+        task.description = request.POST.get('description')
+        task.save()
+        return redirect('todolist:show_todolist')
 
 # Hapus task
 def delete_task(request, id):
