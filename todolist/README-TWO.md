@@ -99,7 +99,8 @@ urlpatterns = [
 
 ```
 
-Jangan lupa juga membuat modal yang dapat diambil dari dokumentasi Bootstrap dan mengubahnya sesuai keinginan. Setelah itu langsung saja tambahkan script berikut pada berkas [todolist.html](templates/todolist.html). Script akan diaktifkan jika form dengan id = addTask di-klik dan akan mengirimkan data yang telah diubah menjadi format yang sesuai ke path sesuai yang tertulis pada kode dibawah ini. Setelah selesai mengirimkan data, modal akan dihapus dan form akan di-reset kembali.
+Jangan lupa juga membuat modal yang dapat diambil dari dokumentasi Bootstrap dan mengubahnya sesuai keinginan. Setelah itu langsung saja tambahkan script berikut pada berkas [todolist.html](templates/todolist.html). Script akan diaktifkan jika form dengan id = addTask di-klik dan akan mengirimkan data yang telah diubah menjadi format yang sesuai ke path sesuai yang tertulis pada kode dibawah ini. Setelah selesai mengirimkan data, modal akan dihapus dan form akan di-reset kembali. Jangan lupa juga untuk menerapkan asinkronus sehingga tidak perlu reload seluruh halaman.
+
 ```
 $("#addTask").submit(function (e) {
       e.preventDefault();
@@ -114,7 +115,13 @@ $("#addTask").submit(function (e) {
               $('#addTask').each(function () {
                   this.reset();
               });
-          }
-     });
+
+              // Empty div class and make new
+              $("#data").empty();
+              $.get( "{% url 'todolist:show_json' %}", function(data) {
+                taskData(data);
+              });
+        }
+    });    
 });
 ```
