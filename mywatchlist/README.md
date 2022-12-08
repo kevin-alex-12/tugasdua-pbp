@@ -1,9 +1,9 @@
 ## Link menuju aplikasi
 
-https://tugas-pbp22.herokuapp.com/mywatchlist/ <br>
-https://tugas-pbp22.herokuapp.com/mywatchlist/html/ <br>
-https://tugas-pbp22.herokuapp.com/mywatchlist/json/ <br>
-https://tugas-pbp22.herokuapp.com/mywatchlist/xml/
+https://tugas-pbp22.up.railway.app/mywatchlist/ <br>
+https://tugas-pbp22.up.railway.app/mywatchlist/html/ <br>
+https://tugas-pbp22.up.railway.app/mywatchlist/json/ <br>
+https://tugas-pbp22.up.railway.app/mywatchlist/xml/
 
 ##  Jelaskan perbedaan antara JSON, XML, dan HTML!
 

@@ -1,6 +1,6 @@
 ## Link menuju aplikasi
 
-https://tugas-pbp22.herokuapp.com/todolist/ <br>
+https://tugas-pbp22.up.railway.app/todolist/ <br>
 
 ## Akun pengguna dan dummy data
 
